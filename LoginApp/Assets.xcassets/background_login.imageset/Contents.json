@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "spiderman_phone_wallpaper_by_balsavor_d99wphk-pre.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "spiderman_phone_wallpaper_by_balsavor_d99wphk-pre 1.jpg",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "spiderman_phone_wallpaper_by_balsavor_d99wphk-pre 2.jpg",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
