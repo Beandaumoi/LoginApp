@@ -58,55 +58,13 @@ private extension LoginView {
 
 private extension LoginView {
     var usernameField: some View {
-        VStack(alignment: .leading) {
-            Text("Tên đăng nhập")
-                .font(.title3)
-                .bold()
-                .foregroundStyle(.white)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.top, 30)
-            
-            TextField(
-                "",
-                text: $viewModel.username,
-                prompt: Text("Nhập tài khoản...")
-                    .foregroundStyle(.white.opacity(0.8))
-            )
-            .padding(.horizontal, 16)
-            .padding(.vertical, 16)
-            .foregroundStyle(.white)
-            .overlay(
-                RoundedRectangle(cornerRadius: 8)
-                    .stroke(.white, lineWidth: 2)
-            )
-        }
+        return CTTextField(title: "Tên đăng nhập", placeHolder: "Nhập tài khoản...", text: $viewModel.username)
     }
 }
 
 private extension LoginView {
     var passwordField: some View {
-        VStack(alignment: .leading) {
-            Text("Mật khẩu")
-                .font(.title3)
-                .bold()
-                .foregroundStyle(.white)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.top, 30)
-            
-            SecureField(
-                "",
-                text: $viewModel.password,
-                prompt: Text("Nhập mật khẩu...")
-                    .foregroundStyle(.white.opacity(0.8))
-            )
-            .padding(.horizontal, 16)
-            .padding(.vertical, 16)
-            .foregroundStyle(.white)
-            .overlay(
-                RoundedRectangle(cornerRadius: 8)
-                    .stroke(.white, lineWidth: 2)
-            )
-        }
+        return CTTextField(title: "Mật khẩu", placeHolder: "Nhập mật khẩu...", text: $viewModel.password)
     }
 }
 

@@ -68,109 +68,25 @@ private extension RegisterView {
 
 private extension RegisterView {
     var fullnameField: some View {
-        VStack(alignment: .leading) {
-            Text("Họ và tên")
-                .font(.title3)
-                .bold()
-                .foregroundStyle(.white)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.top, 30)
-            
-            TextField(
-                "",
-                text: $registerModel.fullname,
-                prompt: Text("Nhập họ và tên...")
-                    .foregroundStyle(.white.opacity(0.8))
-            )
-            .padding(.horizontal, 16)
-            .padding(.vertical, 16)
-            .overlay(
-                RoundedRectangle(cornerRadius: 8)
-                    .stroke(.white, lineWidth: 2)
-            )
-            .foregroundStyle(.white)
-        }
+        return CTTextField(title: "Họ và tên", placeHolder: "Nhập họ và tên...", text: $registerModel.fullname)
     }
 }
 
 private extension RegisterView {
     var usernameField: some View {
-        VStack(alignment: .leading) {
-            Text("Tên đăng nhập")
-                .font(.title3)
-                .bold()
-                .foregroundStyle(.white)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.top, 30)
-            
-            TextField(
-                "",
-                text: $registerModel.username,
-                prompt: Text("Nhập tài khoản...")
-                    .foregroundStyle(.white.opacity(0.8))
-            )
-            .padding(.horizontal, 16)
-            .padding(.vertical, 16)
-            .overlay(
-                RoundedRectangle(cornerRadius: 8)
-                    .stroke(.white, lineWidth: 2)
-            )
-            .foregroundStyle(.white)
-        }
+        return CTTextField(title: "Tên đăng nhập", placeHolder: "Nhập tài khoản...", text: $registerModel.username)
     }
 }
 
 private extension RegisterView {
     var passwordField: some View {
-        VStack(alignment: .leading) {
-            Text("Mật khẩu")
-                .font(.title3)
-                .bold()
-                .foregroundStyle(.white)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.top, 30)
-            
-            SecureField(
-                "",
-                text: $registerModel.password,
-                prompt: Text("Nhập mật khẩu...")
-                    .foregroundStyle(.white.opacity(0.8))
-            )
-            .padding(.horizontal, 16)
-            .padding(.vertical, 16)
-            .overlay(
-                RoundedRectangle(cornerRadius: 8)
-                    .stroke(.white, lineWidth: 2)
-            )
-            .foregroundStyle(.white)
-        }
+        return CTTextField(title: "Mật khẩu", placeHolder: "Nhập mật khẩu...", text: $registerModel.password)
     }
 }
 
 private extension RegisterView {
     var confirmPasswordField: some View {
-        VStack(alignment: .leading) {
-            Text("Nhập lại mật khẩu")
-                .font(.title3)
-                .bold()
-                .foregroundStyle(.white)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.top, 30)
-            
-            SecureField(
-                "",
-                text: $registerModel.confirmPassword,
-                prompt: Text("Nhập lại mật khẩu...")
-                    .foregroundStyle(.white.opacity(0.8))
-            )
-            .padding(.horizontal, 16)
-            .padding(.vertical, 16)
-            .overlay(
-                RoundedRectangle(cornerRadius: 8)
-                    .stroke(.white, lineWidth: 2)
-            )
-            .foregroundStyle(.white)
-        }
+        return CTTextField(title: "Nhập lại mật khẩu", placeHolder: "Nhập lại mật khẩu...", text: $registerModel.confirmPassword)
     }
 }
 
