@@ -8,20 +8,31 @@
 import Foundation
 internal import Combine
 
+enum LoginState: Equatable {
+    case idle
+    case loading
+    case success
+    case error(String)
+}
+
 
 class LoginViewModel: ObservableObject {
     @Published var username = ""
     @Published var password = ""
-    @Published var loading = false
-    @Published var error: String?
     
-    func login(onSuccess: @escaping () -> Void) {
-        loading = true
-        error = nil
+    @Published private(set) var state: LoginState = .idle
+    
+    func login() {
+        
+        guard !username.isEmpty, !password.isEmpty else {
+            state = .error("Vui lòng nhập đầy đủ tài khoản và mật khẩu")
+            return
+        }
+        
+        state = .loading
         
         guard let url = URL(string: "https://bin.h00k.dev/ff318635-e377-47d8-bb32-c81a6ee08052/login") else {
-            loading = false
-            error = "Lỗi API"
+            state = .error("Lỗi API")
             return
         }
         
@@ -38,38 +49,40 @@ class LoginViewModel: ObservableObject {
         
         URLSession.shared.dataTask(with: request) { data, response, err in
             DispatchQueue.main.async {
-                self.loading = false
                 
                 if let err = err {
                     print("Error: ", err.localizedDescription)
-                    self.error = "Login thất bại"
+                    self.state = .error("Login thất bại")
                     return
                 }
                 
                 guard let httpResponse = response as? HTTPURLResponse else {
-                    self.error = "Tài khoản hoặc mật khẩu không hợp lệ"
+                    self.state = .error("Tài khoản hoặc mật khẩu không hợp lệ")
                     return
                 }
                 
                 print("Status code: ", httpResponse.statusCode)
                 
                 guard (200...299) .contains(httpResponse.statusCode) else {
-                    self.error = "Sai tài khoản hoặc mật khẩu"
+                    self.state = .error("Sai tài khoản hoặc mật khẩu")
                     return
                 }
                 
                 
-                if let data = data {
-                    if let jsonString = String(data: data, encoding: .utf8) {
-                        print("Response body: ")
-                        print(jsonString)
-                    } else {
-                        print("Không convert được data thành string")
-                    }
+                if let data = data,
+                   let jsonString = String(data: data, encoding: .utf8) {
+                    print("Response body: ")
+                    print(jsonString)
                 }
                 
-                onSuccess()
+                self.state = .success
             }
         }.resume()
+    }
+    func reset() {
+        state = .idle
+        
+        username = ""
+        password = ""
     }
 }
