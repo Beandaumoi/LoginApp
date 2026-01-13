@@ -20,7 +20,7 @@ struct ContentView: View {
                 goToRegister = true
             })
             .navigationDestination(isPresented: $goToMain, destination: {
-                Main()
+                TransactionsListView()
             })
             .navigationDestination(isPresented: $goToRegister, destination: {
                 RegisterView()
